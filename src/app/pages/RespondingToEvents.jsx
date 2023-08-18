@@ -54,6 +54,11 @@ export default function RespondingToEvents(props) {
         approach.
       </p>
 
+      <p>
+        For preventing the default behavior of the event, just like in
+        JavaScript, we need to use e.preventDefault().
+      </p>
+
       {/* (*) */}
 
       <button onClick={handleClick}>click</button>
@@ -99,6 +104,8 @@ export default function RespondingToEvents(props) {
       <Parent children={<ChildStopProp />} />
 
       {/* (###) */}
+
+      <BtnChild onClick={() => console.log("blablabla...")} children="press" />
     </div>
   );
 }
@@ -142,16 +149,14 @@ function ChildStopProp() {
 // --------------------------------------
 // ##
 function BtnChild({ onClick, children }) {
-  <button
-    onClick={(e) => {
-      e.stopPropagation();
-      onClick();
-    }}
-  >
-    {children}
-  </button>;
-}
-
-function BtnParent({ children, onClick }) {
-  return { children };
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+    >
+      {children}
+    </button>
+  );
 }
