@@ -1,0 +1,27 @@
+## Pure components
+
+One of the concepts of React, is that it assumus we always create pure
+components (pure functions).
+
+Keep components pure. A component should return the same JSX for the same input,
+always.
+
+A pure component don't modify an object or a variable that existed before
+rendering, only variables declared inside the component itself, or side
+effects, as events for example.
+
+Each component should render JSX on their own, they should be independent.
+
+As event handler don't run during rendering they don't need to be pure.
+
+## Adding Interactivity
+
+Hooks are special functions that allows you to use special React features,
+one of those features is useState hook with provides states.
+
+The rendering process in React:
+
+1. Triggering a render
+2. Rendering the component
+3. Commiting to the DOM
+

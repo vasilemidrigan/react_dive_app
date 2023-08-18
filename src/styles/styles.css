@@ -1,0 +1,11 @@
+p {
+  word-break: normal;
+}
+
+button {
+  margin: 3px;
+}
+
+.wrapper {
+  border: 1px solid grey;
+}
