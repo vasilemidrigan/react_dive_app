@@ -8,10 +8,14 @@ import Gallery from "./pages/Gallery";
 import RespondingToEvents from "./pages/RespondingToEvents";
 
 export default function Home() {
+  // Topic: Responding to Events
+  const message = "Leonardo is here!";
+  // ---------------------------------
+
   return (
     <main>
       <Gallery term="Scientists" />
-      <RespondingToEvents />
+      <RespondingToEvents message={message} />
     </main>
   );
 }
