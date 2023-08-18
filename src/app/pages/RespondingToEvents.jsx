@@ -41,6 +41,19 @@ export default function RespondingToEvents(props) {
         with 'on', for example onCrash.
       </p>
 
+      <p>(#) All events, except onScroll, propagates in React.</p>
+
+      <p>
+        (##) We can stop propagation as we do in JavaScript, with
+        stopPropagation().
+      </p>
+
+      <p>
+        (###) If we need the child component to handle the event, while also
+        specify some behavior from the parent component, we can use this
+        approach.
+      </p>
+
       {/* (*) */}
 
       <button onClick={handleClick}>click</button>
@@ -76,6 +89,16 @@ export default function RespondingToEvents(props) {
       {/* (****) */}
 
       <Btn onLeftBtn={onLeftClick} message={"left click here"} />
+
+      {/* (#) */}
+
+      <Parent children={<Children />} />
+
+      {/* (##) */}
+
+      <Parent children={<ChildStopProp />} />
+
+      {/* (###) */}
     </div>
   );
 }
@@ -88,4 +111,47 @@ function Button({ onclick, message }) {
 // ****
 function Btn({ onLeftBtn, message }) {
   return <button onClick={onLeftBtn}>{message}</button>;
+}
+// ------------------------------------
+// #
+function Parent({ children }) {
+  return (
+    <div className="wrapper" onClick={() => console.log("parent")}>
+      {children}
+    </div>
+  );
+}
+
+function Children() {
+  return <button onClick={(e) => console.log("children", e)}>children</button>;
+}
+// -------------------------------------
+// ##
+function ChildStopProp() {
+  return (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        console.log("it does not propagate!");
+      }}
+    >
+      children
+    </button>
+  );
+}
+// --------------------------------------
+// ##
+function BtnChild({ onClick, children }) {
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick();
+    }}
+  >
+    {children}
+  </button>;
+}
+
+function BtnParent({ children, onClick }) {
+  return { children };
 }
