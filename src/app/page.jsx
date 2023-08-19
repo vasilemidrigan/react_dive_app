@@ -8,6 +8,7 @@ import RenderAndCommit from "./pages/RenderAndCommit";
 import StateAsASnapshot from "./pages/StateAsASnapshot";
 import QueueingASeriesOfStateUpdates from "./pages/QueueingASeriesOfStateUpdates.jsx";
 import UpdatingObjectsInState from "./pages/UpdatingObjectsInState";
+import UpdatingArraysInState from "./pages/UpdatingArraysInState";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -21,7 +22,8 @@ export default function Home() {
       {/* <RenderAndCommit /> */}
       {/* <StateAsASnapshot /> */}
       {/* <QueueingASeriesOfStateUpdates /> */}
-      <UpdatingObjectsInState />
+      {/* <UpdatingObjectsInState /> */}
+      <UpdatingArraysInState />
     </main>
   );
 }
