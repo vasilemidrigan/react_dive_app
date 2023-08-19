@@ -2,13 +2,17 @@
 
 import "../styles/styles.css";
 
-import RespondingToEvents from "./pages/RespondingToEvents";
-import State from "./pages/State";
-import RenderAndCommit from "./pages/RenderAndCommit";
-import StateAsASnapshot from "./pages/StateAsASnapshot";
-import QueueingASeriesOfStateUpdates from "./pages/QueueingASeriesOfStateUpdates.jsx";
-import UpdatingObjectsInState from "./pages/UpdatingObjectsInState";
-import UpdatingArraysInState from "./pages/UpdatingArraysInState";
+// Adding Interactivity
+import RespondingToEvents from "./pages/AddingInteractivity/RespondingToEvents";
+import State from "./pages/AddingInteractivity/State";
+import RenderAndCommit from "./pages/AddingInteractivity/RenderAndCommit";
+import StateAsASnapshot from "./pages/AddingInteractivity/StateAsASnapshot";
+import QueueingASeriesOfStateUpdates from "./pages/AddingInteractivity/QueueingASeriesOfStateUpdates.jsx.jsx";
+import UpdatingObjectsInState from "./pages/AddingInteractivity/UpdatingObjectsInState";
+import UpdatingArraysInState from "./pages/AddingInteractivity/UpdatingArraysInState";
+
+// Managing State
+import ReactingToInputWithState from "./pages/ManagingState/ReactingToInputWithState";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -17,13 +21,19 @@ export default function Home() {
 
   return (
     <main>
+      {/* Adding Interactivity */}
+
       {/* <RespondingToEvents message={message} /> */}
       {/* <State /> */}
       {/* <RenderAndCommit /> */}
       {/* <StateAsASnapshot /> */}
       {/* <QueueingASeriesOfStateUpdates /> */}
       {/* <UpdatingObjectsInState /> */}
-      <UpdatingArraysInState />
+      {/* <UpdatingArraysInState /> */}
+
+      {/* Managing State */}
+
+      <ReactingToInputWithState />
     </main>
   );
 }
