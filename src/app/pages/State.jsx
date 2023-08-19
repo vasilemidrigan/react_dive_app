@@ -10,6 +10,8 @@ export default function State() {
   }
   // 2
   const [number, setNumber] = useState(1);
+  // 4
+  let message = "Hi all!";
 
   function handleNumber() {
     setNumber(number + 1);
@@ -102,6 +104,14 @@ export default function State() {
         a parent can't change the state of the child component.
       </p>
 
+      <hr />
+
+      <p>
+        (4) ! In cases where we don't need to persist the value between renders,
+        we should use regular variables. For example in single events, where we
+        don't need to remember the value.
+      </p>
+
       {/* 1 */}
 
       <span>num variable is: {num}</span>
@@ -119,6 +129,9 @@ export default function State() {
 
       <Child />
       <Child />
+
+      {/* 4 */}
+      <button onClick={() => console.log(message)}>greet all</button>
     </div>
   );
 }
