@@ -23,6 +23,11 @@ button {
   cursor: pointer;
 }
 
+label {
+  display: block;
+  margin: 5px;
+}
+
 .wrapper {
   border: 1px solid grey;
   padding: 3px;
