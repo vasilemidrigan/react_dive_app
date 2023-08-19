@@ -1,11 +1,9 @@
 "use client";
 
-import { useState } from "react";
-
 import "../styles/styles.css";
 
-import Gallery from "./pages/Gallery";
 import RespondingToEvents from "./pages/RespondingToEvents";
+import State from "./pages/State";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -14,8 +12,8 @@ export default function Home() {
 
   return (
     <main>
-      <Gallery term="Scientists" />
-      <RespondingToEvents message={message} />
+      {/* <RespondingToEvents message={message} /> */}
+      <State />
     </main>
   );
 }

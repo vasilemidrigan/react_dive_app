@@ -12,6 +12,11 @@ p {
 
 h1 {
   margin: 10px;
+  line-height: 2rem;
+}
+
+hr {
+  margin: 5px;
 }
 
 button {
@@ -21,4 +26,5 @@ button {
 
 .wrapper {
   border: 1px solid grey;
+  padding: 3px;
 }
