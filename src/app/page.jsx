@@ -4,6 +4,7 @@ import "../styles/styles.css";
 
 import RespondingToEvents from "./pages/RespondingToEvents";
 import State from "./pages/State";
+import RenderAndCommit from "./pages/RenderAndCommit";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -13,7 +14,8 @@ export default function Home() {
   return (
     <main>
       {/* <RespondingToEvents message={message} /> */}
-      <State />
+      {/* <State /> */}
+      <RenderAndCommit />
     </main>
   );
 }
