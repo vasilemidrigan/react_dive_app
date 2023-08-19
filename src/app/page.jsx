@@ -5,6 +5,7 @@ import "../styles/styles.css";
 import RespondingToEvents from "./pages/RespondingToEvents";
 import State from "./pages/State";
 import RenderAndCommit from "./pages/RenderAndCommit";
+import StateAsASnapshot from "./pages/StateAsASnapshot";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -15,7 +16,8 @@ export default function Home() {
     <main>
       {/* <RespondingToEvents message={message} /> */}
       {/* <State /> */}
-      <RenderAndCommit />
+      {/* <RenderAndCommit /> */}
+      <StateAsASnapshot />
     </main>
   );
 }

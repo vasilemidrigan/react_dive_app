@@ -13,7 +13,8 @@ h1 {
   line-height: 2rem;
 }
 
-hr {
+hr,
+b {
   margin: 5px;
 }
 
