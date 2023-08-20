@@ -14,6 +14,7 @@ import UpdatingArraysInState from "./pages/AddingInteractivity/UpdatingArraysInS
 // Managing State
 import ReactingToInputWithState from "./pages/ManagingState/ReactingToInputWithState";
 import ChoosingTheStateStructure from "./pages/ManagingState/ChoosingTheStateStructure";
+import SharingStateBetweenComponents from "./pages/ManagingState/SharingStateBetweenComponents";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -23,7 +24,7 @@ export default function Home() {
   return (
     <main>
       {/* Adding Interactivity */}
-
+      <div></div>
       {/* <RespondingToEvents message={message} /> */}
       {/* <State /> */}
       {/* <RenderAndCommit /> */}
@@ -35,7 +36,8 @@ export default function Home() {
       {/* Managing State */}
 
       {/* <ReactingToInputWithState /> */}
-      <ChoosingTheStateStructure />
+      {/* <ChoosingTheStateStructure /> */}
+      <SharingStateBetweenComponents />
     </main>
   );
 }
