@@ -16,6 +16,7 @@ import ReactingToInputWithState from "./pages/ManagingState/ReactingToInputWithS
 import ChoosingTheStateStructure from "./pages/ManagingState/ChoosingTheStateStructure";
 // import SharingStateBetweenComponents from "./pages/ManagingState/SharingStateBetweenComponents";
 import PreservingAndResetingState from "./pages/ManagingState/PreservingAndResettingState";
+import ExtractStateLogicIntoAReducer from "./pages/ManagingState/ExtractingStateLogicIntoAReducer";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -39,7 +40,8 @@ export default function Home() {
       {/* <ReactingToInputWithState /> */}
       {/* <ChoosingTheStateStructure /> */}
       {/* <SharingStateBetweenComponents /> */}
-      <PreservingAndResetingState />
+      {/* <PreservingAndResetingState /> */}
+      <ExtractStateLogicIntoAReducer />
     </main>
   );
 }
