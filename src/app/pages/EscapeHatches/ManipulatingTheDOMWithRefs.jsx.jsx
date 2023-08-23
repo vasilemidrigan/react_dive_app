@@ -1,5 +1,5 @@
 // 1
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 
 export default function ManipulatingTheDOMWithRefs() {
   // 1
@@ -9,8 +9,14 @@ export default function ManipulatingTheDOMWithRefs() {
     inputRef.current.focus();
   }
 
-  // 2
+  // 3
+  const childRef = useRef(null);
 
+  function focusChild() {
+    childRef.current.focus();
+  }
+
+  // 2
   let catList = [];
 
   for (let i = 0; i < 10; i++) {
@@ -40,6 +46,12 @@ export default function ManipulatingTheDOMWithRefs() {
     return itemsRef.current;
   }
 
+  // 4
+
+  const Child = forwardRef((props, ref) => {
+    return <input {...props} ref={ref} />;
+  });
+
   return (
     <div className="wrapper">
       <h1>Manipulating the DOM with Refs</h1>
@@ -57,9 +69,35 @@ export default function ManipulatingTheDOMWithRefs() {
         <b>ref callback</b> (2)
       </p>
 
+      <p>
+        (3) React doesn't allow to access the DOM elements of another component,
+        event an element of its own child. That's for a reason, the code will be
+        more fragile in such a case.
+      </p>
+
+      <p>
+        (4) If we want to expose the DOM of our components we need to explicitly
+        set that. So, the component specify that it forwards its ref to one of
+        its children.
+      </p>
+
+      <p>Refs best practices:</p>
+      <ul>
+        <li>Avoid changing DOM nodes managed by React.</li>
+        <li>
+          However, this doesn't mean that we cannot do it at all. We can safely
+          modify parts of the DOM that React has no reason to update.
+        </li>
+      </ul>
+
       {/* 1 */}
       <input ref={inputRef} />
       <button onClick={focus}>change name</button>
+
+      {/* 3 */}
+
+      <Child ref={childRef} />
+      <button onClick={focusChild}>focus child</button>
 
       {/* 2 */}
       <div className="wrapper">
@@ -85,6 +123,17 @@ export default function ManipulatingTheDOMWithRefs() {
           </div>
         ))}
       </div>
+    </div>
+  );
+}
+
+// 3
+
+function Child() {
+  return (
+    <div className="wrapper">
+      <h2>(3)Child element</h2>
+      <input />
     </div>
   );
 }
