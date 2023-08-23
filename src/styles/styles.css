@@ -28,7 +28,21 @@ label {
   margin: 5px;
 }
 
-.wrapper {
+.wrapper,
+.brick {
   border: 1px solid grey;
   padding: 3px;
+}
+
+.brick-row {
+  margin-top: 30px;
+  position: absolute;
+  height: 100px;
+  width: 1000px;
+}
+
+.brick {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
 }

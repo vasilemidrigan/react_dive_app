@@ -23,6 +23,10 @@ import FakeContext from "./pages/ManagingState/contextAndReducerSeparately/FakeC
 import FakeApp from "./pages/ManagingState/contextAndReducerSeparately/fakeApp";
 import FakeChild from "./pages/ManagingState/contextAndReducerSeparately/fakeChild";
 
+// Escape Hatches
+import ReferencingValuesWithRefs from "./pages/EscapeHatches/ReferencingValuesWithRefs";
+import ManipulatingTheDOMWithRefs from "./pages/EscapeHatches/ManipulatingTheDOMWithRefs.jsx";
+
 export default function Home() {
   // Topic: Responding to Events
   const message = "Leonardo is here!";
@@ -31,7 +35,7 @@ export default function Home() {
   return (
     <main>
       {/* Adding Interactivity */}
-      <div></div>
+
       {/* <RespondingToEvents message={message} /> */}
       {/* <State /> */}
       {/* <RenderAndCommit /> */}
@@ -50,11 +54,16 @@ export default function Home() {
       {/* <PassingDataDeeplyWithContext /> */}
       {/* <ScalingUpWithReducerAndContext /> */}
 
-      <FakeContext>
+      {/* <FakeContext>
         <FakeApp>
           <FakeChild />
         </FakeApp>
-      </FakeContext>
+      </FakeContext> */}
+
+      {/* Escape Hatches */}
+
+      {/* <ReferencingValuesWithRefs /> */}
+      <ManipulatingTheDOMWithRefs />
     </main>
   );
 }
