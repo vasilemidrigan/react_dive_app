@@ -19,6 +19,9 @@ import PreservingAndResetingState from "./pages/ManagingState/PreservingAndReset
 import ExtractStateLogicIntoAReducer from "./pages/ManagingState/ExtractingStateLogicIntoAReducer";
 import PassingDataDeeplyWithContext from "./pages/ManagingState/PassingDataDeeplyWithContext";
 import ScalingUpWithReducerAndContext from "./pages/ManagingState/ScalingUpWithReducerAndContext";
+import FakeContext from "./pages/ManagingState/contextAndReducerSeparately/FakeContext";
+import FakeApp from "./pages/ManagingState/contextAndReducerSeparately/fakeApp";
+import FakeChild from "./pages/ManagingState/contextAndReducerSeparately/fakeChild";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -45,7 +48,13 @@ export default function Home() {
       {/* <PreservingAndResetingState /> */}
       {/* <ExtractStateLogicIntoAReducer /> */}
       {/* <PassingDataDeeplyWithContext /> */}
-      <ScalingUpWithReducerAndContext />
+      {/* <ScalingUpWithReducerAndContext /> */}
+
+      <FakeContext>
+        <FakeApp>
+          <FakeChild />
+        </FakeApp>
+      </FakeContext>
     </main>
   );
 }
