@@ -130,8 +130,6 @@ export default function ExtractStateLogicIntoAReducer() {
 function Identification() {
   const [name, dispatch] = useReducer(nameReducer, "Leonardo");
 
-  nameReducer("Profira", { type: "change" });
-
   function changeName() {
     dispatch({
       type: "change",
