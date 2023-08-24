@@ -12,6 +12,52 @@ export default function SynchronizingWithEffects() {
     setCount(count + 1);
   }
 
+  // 3
+
+  const connection = {
+    connect() {
+      console.log("connected...");
+    },
+    disconnect() {
+      console.log("disconected...");
+    },
+  };
+
+  useEffect(() => {
+    connection.connect();
+
+    return () => connection.disconnect();
+  }, []);
+
+  // 4
+
+  const [userId, setUserId] = useState();
+
+  function fetchTodos(data) {
+    console.log("fake fetching ...");
+  }
+
+  function setTodos() {
+    console.log("setting todos..");
+  }
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function startFetching() {
+      const json = await fetchTodos(userId);
+      if (!ignore) {
+        setTodos(json);
+      }
+    }
+
+    startFetching();
+
+    return () => {
+      ignore = true;
+    };
+  }, [userId]);
+
   return (
     <div className="wrapper">
       <h1>Synchronizing with Effects</h1>
@@ -88,7 +134,73 @@ export default function SynchronizingWithEffects() {
         disconnect.
       </p>
 
-      <p></p>
+      <p>
+        (3) In strict mode, React re-mounts once every component immediately
+        after its initial mount, so that we can spot immediately the real issue,
+        like for example if we have a connection and it doesn't close, like in
+        this example.
+      </p>
+
+      <p>
+        In development, the behavior (3) is the correct one, in production
+        though we'll only one connection and that's it.
+      </p>
+
+      <p>
+        So there is no need to prevent the component to re-mount as this is for
+        a reason.
+      </p>
+
+      <p>
+        Depending on the functionality, and circumstances, we may need to call
+        cleanup functin in effect, or not, it depends. There are non-React
+        widgets for example, that don't need a cleanup function, and vice-versa.
+      </p>
+
+      <p>
+        If the effect is subscribing to something, it needs to usubscribe, like
+        for example addEventListener and removeEventListener
+      </p>
+
+      <p>
+        If effect animates something it need the cleanup function to reset the
+        animation to the initial values.
+      </p>
+
+      <p>
+        For fetching data, we need abort or ignore the results. If we don't want
+        to use the solution (4), because it runs once and then sets the ignore
+        to true, and then in the second mount it doesn't fetch as our ignore is
+        set to true, we can use caching.
+      </p>
+
+      <p>
+        Using fetch have some downsides: it doesn't run on the server, so after
+        we load the HTML, JavaScript we have to load the data as well, then
+        another problem is that it is easy to create network waterfalls, and
+        another problem is not having preload and data caching.
+      </p>
+
+      <p>
+        The solution to the issues above, is to use built-in fetching mechanism
+        from the framework we use, if this is the case, because they have
+        integrated data fetching mechanics that are efficient. Otherwise,
+        consider to build or use a client-side cache like React Query, useSWR
+        and React Router 6.4+
+      </p>
+
+      <p>
+        Don't put effect where it shouldn't be, for example buying a product, is
+        not an effect running once on mounting, it should be an event attached
+        to a button, so if we leave it as an effect we will literally buy the
+        product two times, as it will run in development two times.
+      </p>
+
+      <p>
+        The case above described shows that if the remounting breaks the logic
+        then it means that we have to change something, as the remounting is
+        there for a reason so we need to change our code so that it will work.
+      </p>
 
       {/* 1 */}
 
