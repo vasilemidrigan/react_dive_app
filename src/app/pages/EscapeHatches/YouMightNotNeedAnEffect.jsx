@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export default function YouMightNotNeedAnEffect() {
   // 1 (commented code bellow is the inefficient approach)
@@ -12,9 +12,8 @@ export default function YouMightNotNeedAnEffect() {
   //   setFullName(firstName + " " + lastName);
   // }, [firstName, lastName]);
 
-  console.log("firstName", firstName);
-  console.log("lastName", lastName);
-  console.log("fullName", fullName);
+  // 3
+  const [user, setUser] = useState(0);
 
   return (
     <div className="wrapper">
@@ -59,6 +58,42 @@ export default function YouMightNotNeedAnEffect() {
         them.
       </p>
 
+      <p>
+        The code on lines (**) are inefficient solution, on line(*) though, it
+        is efficient, only if the function is not slow. If it is slow, we can
+        use memoization (***), so we do not recalculate complex data, we only
+        run the function when either one of the variables from the dependency
+        array is changed.
+      </p>
+
+      <p>
+        In the example (****) we are verifying the time it takes to run the
+        function, if there is more than 1ms, probably it is better to memoize
+        it. For testing on slow CPU we can use CPU Throttling
+      </p>
+
+      <br />
+
+      <b>(3) Resetting all state when a prop changes</b>
+
+      <br />
+
+      <p>
+        We are passing key to Profile component so React will update the input
+        whenever the component changes, the problem we solve is that we don't
+        need to use useEffect in order to set the comment to an empty string
+        whenever the component Profile changes.
+      </p>
+
+      <br />
+
+      <b>Adjusting some state when a prop changes</b>
+
+      <p>
+        Sometimes we want to only reset or adjust a part of the state based on a
+        prop change.
+      </p>
+
       {/* 1 */}
       <input
         value={firstName}
@@ -72,18 +107,28 @@ export default function YouMightNotNeedAnEffect() {
       {/* 2 */}
 
       <TodoList todos={todos} filter={filterList} />
+
+      {/* 3 */}
+
+      <ProfilePage userId={user} />
+      <button onClick={() => setUser(Math.floor(Math.random() * 10))}>
+        changeUser
+      </button>
     </div>
   );
 }
 
 // 2
 function TodoList({ todos, filter }) {
-  const [newTodo, setNewTodo] = useState("");
+  // const visibleTodos = getFilteredTodos(todos, filter); // *
 
-  // inefficient solution
-  // const [visibleTodos, setVisibleTodos] = useState([]);
-
-  console.log("render");
+  // ***
+  console.time("visibleTodos"); // ***
+  const visibleTodos = useMemo(() => {
+    return getFilteredTodos(todos, filter);
+  }, [todos, filter]);
+  console.timeEnd("visibleTodos");
+  // const [visibleTodos, setVisibleTodos] = useState([]); **
 
   function getFilteredTodos(list, filter) {
     let items = filter(list);
@@ -91,7 +136,7 @@ function TodoList({ todos, filter }) {
     return items;
   }
 
-  // inneficient solution
+  // inneficient solution **
   // useEffect(() => {
   //   setVisibleTodos(getFilteredTodos(todos, filter));
   // }, [todos, filter]);
@@ -118,4 +163,52 @@ let todos = [
 function filterList(items) {
   let list = items.filter((item) => item.a > 2);
   return list;
+}
+
+// 3
+
+function ProfilePage({ userId }) {
+  // -------------------------------------------
+  // pass this line to Profile
+  // const [comment, setComment] = useState("");
+  // -------------------------------------------
+  console.log("render PRofilePage");
+
+  return (
+    <div className="wrapper">
+      <h3>Profile Page</h3>
+      <Profile userId={userId} key={userId} />
+      {/* -------------------------------------- */}
+      {/* pass input to Profile as well */}
+      {/* <label>
+        comment
+        <input
+          value={comment}
+          onChange={() => setComment(event.target.value)}
+        />
+      </label> */}
+      {/* -------------------------------------- */}
+    </div>
+  );
+}
+
+function Profile({ userId }) {
+  // --------------------------------
+  const [comment, setComment] = useState("");
+  // --------------------------------
+
+  return (
+    <>
+      <h4>Profile userId: {userId} </h4>
+      {/* ---------------------------- */}
+      <label>
+        comment
+        <input
+          value={comment}
+          onChange={() => setComment(event.target.value)}
+        />
+      </label>
+      {/* ---------------------------- */}
+    </>
+  );
 }
