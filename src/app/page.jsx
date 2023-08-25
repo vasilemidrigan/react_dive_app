@@ -26,7 +26,8 @@ import FakeChild from "./pages/ManagingState/contextAndReducerSeparately/fakeChi
 // Escape Hatches
 import ReferencingValuesWithRefs from "./pages/EscapeHatches/ReferencingValuesWithRefs";
 import ManipulatingTheDOMWithRefs from "./pages/EscapeHatches/ManipulatingTheDOMWithRefs.jsx";
-import SynchronizingWithEffects from "./pages/EscapeHatches/SynchronizingWithEffects";
+// import SynchronizingWithEffects from "./pages/EscapeHatches/SynchronizingWithEffects";
+import YouMightNotNeedAnEffect from "./pages/EscapeHatches/YouMightNotNeedAnEffect";
 
 export default function Home() {
   // Topic: Responding to Events
@@ -65,7 +66,8 @@ export default function Home() {
 
       {/* <ReferencingValuesWithRefs /> */}
       {/* <ManipulatingTheDOMWithRefs /> */}
-      <SynchronizingWithEffects />
+      {/* <SynchronizingWithEffects /> */}
+      <YouMightNotNeedAnEffect />
     </main>
   );
 }
