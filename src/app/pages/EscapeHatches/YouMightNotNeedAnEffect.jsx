@@ -90,8 +90,11 @@ export default function YouMightNotNeedAnEffect() {
       <b>Adjusting some state when a prop changes</b>
 
       <p>
-        Sometimes we want to only reset or adjust a part of the state based on a
-        prop change.
+        (4) Sometimes we want to only reset or adjust a part of the state based
+        on a prop change. This List component receives a list of items as a
+        prop, and maintains the selected item in the selection state variable.
+        You want to reset the selection to null whenever the items prop receives
+        a different array:
       </p>
 
       {/* 1 */}
