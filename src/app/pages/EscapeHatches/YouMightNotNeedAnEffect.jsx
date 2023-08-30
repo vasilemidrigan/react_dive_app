@@ -15,6 +15,15 @@ export default function YouMightNotNeedAnEffect() {
   // 3
   const [user, setUser] = useState(0);
 
+  // 4
+  const [elems, setElems] = useState([1, 4, 5, 6]);
+
+  function pushItem() {
+    setElems((prevElems) => {
+      return [...prevElems, Math.random()];
+    });
+  }
+
   return (
     <div className="wrapper">
       <h1>You Might Not Need an Effect</h1>
@@ -94,7 +103,13 @@ export default function YouMightNotNeedAnEffect() {
         on a prop change. This List component receives a list of items as a
         prop, and maintains the selected item in the selection state variable.
         You want to reset the selection to null whenever the items prop receives
-        a different array:
+        a different array.
+      </p>
+      <p>
+        So, instead of using useEffect which triggers pointless re-renders, we
+        can use the information from the previous render and compare it in order
+        to check if our items are changed, and if so then set selction to null
+        and update our previous items state, just like in the example (4)
       </p>
 
       {/* 1 */}
@@ -117,6 +132,10 @@ export default function YouMightNotNeedAnEffect() {
       <button onClick={() => setUser(Math.floor(Math.random() * 10))}>
         changeUser
       </button>
+
+      {/* 4 */}
+      <List items={elems} />
+      <button onClick={pushItem}>push item</button>
     </div>
   );
 }
@@ -212,6 +231,41 @@ function Profile({ userId }) {
         />
       </label>
       {/* ---------------------------- */}
+    </>
+  );
+}
+
+// 4
+
+function List({ items }) {
+  const [selection, setSelection] = useState(null);
+
+  // -----------------------------------------------
+  // wrigth way
+  const [prevItems, setPrevItems] = useState(items);
+
+  if (prevItems !== items) {
+    setSelection(null);
+    setPrevItems(items);
+  }
+  // -----------------------------------------------
+
+  console.log(selection);
+
+  // ---------------------
+  // wrong way!
+  // useEffect(() => {
+  //   setSelection(null);
+  // }, [items]);
+  // ---------------------
+
+  return (
+    <>
+      <ul>
+        {items.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
     </>
   );
 }
