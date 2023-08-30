@@ -111,6 +111,17 @@ export default function YouMightNotNeedAnEffect() {
         to check if our items are changed, and if so then set selction to null
         and update our previous items state, just like in the example (4)
       </p>
+      <p>
+        The important feature here is that if we update the component during
+        rendering, React throws aways returned JSX and tries another render, if
+        we update another component's state, then we'll get an error.
+      </p>
+      <p>
+        Generally we do not need this pattern, because adjusting our state on
+        other states or props, makes our data flow difficult to understand and
+        debug. Instead of storing and resetting the selected item, we can store
+        the selected id. Just like this(5)
+      </p>
 
       {/* 1 */}
       <input
